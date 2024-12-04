@@ -1,7 +1,21 @@
+import { auth } from "@/auth"
+import StartupForm from "@/components/StartupForm"
+import { redirect } from "next/navigation";
 
-const CreatePage = () => {
+const CreatePage = async () => {
+  const session = await auth();
+
+  if(!session) {
+    redirect('/');
+  }
+
   return (
-    <div>CreatePage</div>
+    <>
+     <section className="pink_container !min-h-[230px]">
+        <h1 className="heading">Submit your Startup</h1>
+      </section> 
+      <StartupForm />
+    </>
   )
 }
 
